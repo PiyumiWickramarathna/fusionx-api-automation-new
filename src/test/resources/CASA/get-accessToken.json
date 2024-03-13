@@ -1,0 +1,8 @@
+{
+  "grant_type":"authorization_code",
+  "client_id":"rpDEzeeKj0izl34cicdPByPLYC5gDXI8",
+  "code":"EsOmcb3y4UCrFwrtRc6_LIzDfVvoUXaCN0OEOkYBDgrvj",
+  "cookie":"visid_incap_2786808=jPW49sLBRoq84LTVw3dlS35opWUAAAAAQUIPAAAAAAD1OyQsgMwfjJyOKfkffIg6; visid_incap_2806728=12+3SlbZQK2BGmt/LoeBZgra3mUAAAAAQUIPAAAAAAC3l0vQxm6QGFXfRRDWVwz9; _legacy_auth0.rpDEzeeKj0izl34cicdPByPLYC5gDXI8.is.authenticated=true; auth0.rpDEzeeKj0izl34cicdPByPLYC5gDXI8.is.authenticated=true; incap_ses_959_2786808=Ufb8UuR0YF0Uk0RTow5PDf+n7mUAAAAAn+9wZrhrd7p6Hrk17zjZtw==",
+  "code_verifier": ".heRID0SCPMgPHCdW8VZ0M2j7WCa4_d8Bp~5U5f8Va-",
+
+}
