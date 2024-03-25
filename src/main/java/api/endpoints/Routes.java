@@ -1,11 +1,22 @@
 package api.endpoints;
 
 import config.factory.ApiConfigFactory;
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+import io.restassured.RestAssured.*;
+import io.restassured.matcher.RestAssuredMatchers.*;
+import org.hamcrest.Matchers.*;
 
 import static io.restassured.RestAssured.given;
+import static org.assertj.core.api.BDDAssertions.then;
+
 
 public class Routes {
 
@@ -19,12 +30,38 @@ public class Routes {
     public static String loginAccessToken;
 
 
-    public static  Response getRequest(String endpoint, String accessToken, String token) {
+
+
+    @Scheduled
+    public static  Response getRequest(Object jsonBody, String endpoint) {
         return given()
+                .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization","Bearer "+accessToken)
+                .body(jsonBody)
+                //.header("Authorization","Bearer "+accessToken)
+                .when()
+                   .get(BASE_URL+endpoint);
+
+    }
+    public static  Response getCustomerById( String endpoint) {
+        return given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                //.body(jsonBody)
+                //.header("Authorization","Bearer "+accessToken)
+                .when()
+                  .get(BASE_URL+endpoint);
+
+    }
+    public static  Response getProductByAccountType( String endpoint) {
+        return given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                //.body(jsonBody)
+                //.header("Authorization","Bearer "+accessToken)
                 .when()
                 .get(BASE_URL+endpoint);
+
     }
 
     public static  Response getRequestLogIn(String endpoint, String cusLoginAccess) {
@@ -68,14 +105,18 @@ public class Routes {
                 .when()
                 .delete(BASE_URL+endpoint);
     }
-    public static  Response postRequest(Object jsonBody, String endpoint,String accessToken) {
+    public static  Response postRequest(Object jsonBody, String endpoint) {
         return given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .body(jsonBody)
-               .header("Authorization","Bearer "+accessToken)
+                .then()
+              // .header("Authorization","Bearer "+accessToken)
                 .when()
-                .post(BASE_URL+endpoint);
+                   .post(BASE_URL+endpoint);
+
+
+
     }
 }
 

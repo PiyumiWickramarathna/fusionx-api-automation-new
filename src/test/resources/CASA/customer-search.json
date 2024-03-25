@@ -1,0 +1,25 @@
+{
+
+  "request": {
+
+    "cusBusinessRegNo": "",
+    "cusContactMobileNumber": "0123456789",
+    "cusFullName" : "Seniya Sansith Dissanayake",
+    "cusIdentificationNo": "1234567892",
+    "cusReferenceCode" : "CUS000000004742",
+    "cusStatus": "ACTIVE",
+    "offset" : "0",
+    "pageNumber" : "0",
+    "pageSize": "10",
+    "paged" : "true",
+    "sort.sorted":"false",
+    "sort.unsorted" :"true",
+    "unpaged":"false"
+
+
+  }
+
+}
+
+
+

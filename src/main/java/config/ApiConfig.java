@@ -21,5 +21,12 @@ public interface ApiConfig extends Config {
   @Key("accessToken.path")
   String pathAccessToken();
 
+  @Key("searchCustomer")
+  String searchCustomer();
+  @Key("getCustomerById")
+  String getCustomerById();
+  @Key("getProductByAccountType")
+  String getProductByAccountType();
+
 
 }
