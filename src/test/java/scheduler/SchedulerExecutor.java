@@ -28,7 +28,7 @@ public class SchedulerExecutor {
     public void executeHourlyTask() {
         try {
             log.info("************** Executing hourly task  **************");
-            testAccountCreation.createUser();
+            //testAccountCreation.createUser();
             testAccountCreation.searchUser();
             log.info("************** Hourly task execution completed ********");
         } catch (IOException | ParseException e) {

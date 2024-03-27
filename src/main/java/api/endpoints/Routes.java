@@ -22,6 +22,10 @@ public class Routes {
 
     private static final String BASE_URL = ApiConfigFactory.getConfig().apiBaseUrl();
 
+    /*Comment When run the locally*/
+   // private static final String QA_BASE_URL = ApiConfigFactory.getConfig().qaBaseUrl();
+
+
 
     @Getter
     public static String accessToken;
@@ -33,12 +37,12 @@ public class Routes {
 
 
     @Scheduled
-    public static  Response getRequest(Object jsonBody, String endpoint) {
+    public static  Response getRequest(String accessToken, Object jsonBody, String endpoint) {
         return given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .body(jsonBody)
-                //.header("Authorization","Bearer "+accessToken)
+                .header("Authorization","Bearer "+accessToken)
                 .when()
                    .get(BASE_URL+endpoint);
 
@@ -63,6 +67,21 @@ public class Routes {
                 .get(BASE_URL+endpoint);
 
     }
+    public static  Response getSubProductByProductId( String endpoint) {
+        return given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                //.body(jsonBody)
+               // .header("Authorization","Bearer "+accessToken)
+                .when()
+                .get(BASE_URL+endpoint);
+
+    }
+
+
+
+
+
 
     public static  Response getRequestLogIn(String endpoint, String cusLoginAccess) {
         return given()
@@ -105,8 +124,9 @@ public class Routes {
                 .when()
                 .delete(BASE_URL+endpoint);
     }
-    public static  Response postRequest(Object jsonBody, String endpoint) {
+    public static  Response postRequest(String endpoint,Object jsonBody,String userName ) {
         return given()
+                .pathParam("userName",userName)
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .body(jsonBody)
@@ -115,7 +135,46 @@ public class Routes {
                 .when()
                    .post(BASE_URL+endpoint);
 
+    }
 
+    public static  Response getAccountSchemeTypes( String endpoint) {
+        return given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                //.body(jsonBody)
+                // .header("Authorization","Bearer "+accessToken)
+                .when()
+                .get(BASE_URL+endpoint);
+
+    }
+    public static  Response getPeriodByStatus(String endpoint) {
+        return given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                //.body(jsonBody)
+                // .header("Authorization","Bearer "+accessToken)
+                .when()
+                .get(BASE_URL+endpoint);
+
+    }
+    public static  Response getRequestSearchSupplies( Object jsonBody, String endpoint) {
+        return given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body(jsonBody)
+               // .header("Authorization","Bearer "+accessToken)
+                .when()
+                .get(BASE_URL+endpoint);
+
+    }
+    public static  Response getRequestAccountCalculatedChargeDetails( Object jsonBody, String endpoint) {
+        return given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body(jsonBody)
+                // .header("Authorization","Bearer "+accessToken)
+                .when()
+                .get(BASE_URL+endpoint);
 
     }
 }

@@ -12,8 +12,15 @@ import org.aeonbits.owner.Config;
 })
 public interface ApiConfig extends Config {
 
-  @Key("baseUrl")
+  @Key("local_baseUrl")
   String apiBaseUrl();
+
+  @Key("qa_baseUrl")
+  String qaBaseUrl();
+
+  @Key("uat_baseUrl")
+  String uatBaseUrl();
+
   @Key("accountCreation")
   String accountCreation();
   @Key("token.url")
@@ -21,12 +28,27 @@ public interface ApiConfig extends Config {
   @Key("accessToken.path")
   String pathAccessToken();
 
-  @Key("searchCustomer")
+  @Key("searchCustomer.path")
   String searchCustomer();
-  @Key("getCustomerById")
+  @Key("getCustomerById.path")
   String getCustomerById();
-  @Key("getProductByAccountType")
+  @Key("getProductByAccountType.path")
   String getProductByAccountType();
+
+  @Key("getSubProductByProductId.path")
+  String getSubProductByProductId();
+
+  @Key("getAccountSchemeTypes.path")
+  String getAccountScheme();
+
+  @Key("getPeriodByStatus.path")
+  String getPeriodByStatus();
+
+  @Key("getSearchSupplies.path")
+  String getSearchSupplies();
+
+  @Key("getCalculatedChargeDetails.path")
+  String getCalculatedChargeDetails();
 
 
 }
