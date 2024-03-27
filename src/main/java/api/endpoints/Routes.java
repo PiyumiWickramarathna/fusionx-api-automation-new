@@ -1,15 +1,30 @@
 package api.endpoints;
 
 import config.factory.ApiConfigFactory;
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+import io.restassured.RestAssured.*;
+import io.restassured.matcher.RestAssuredMatchers.*;
+import org.hamcrest.Matchers.*;
 
 import static io.restassured.RestAssured.given;
+import static org.assertj.core.api.BDDAssertions.then;
+
 
 public class Routes {
 
     private static final String BASE_URL = ApiConfigFactory.getConfig().apiBaseUrl();
+
+    /*Comment When run the locally*/
+   // private static final String QA_BASE_URL = ApiConfigFactory.getConfig().qaBaseUrl();
+
 
 
     @Getter
@@ -19,13 +34,54 @@ public class Routes {
     public static String loginAccessToken;
 
 
-    public static  Response getRequest(String endpoint, String accessToken, String token) {
+
+
+    @Scheduled
+    public static  Response getRequest(String accessToken, Object jsonBody, String endpoint) {
         return given()
+                .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
+                .body(jsonBody)
                 .header("Authorization","Bearer "+accessToken)
                 .when()
-                .get(BASE_URL+endpoint);
+                   .get(BASE_URL+endpoint);
+
     }
+    public static  Response getCustomerById( String endpoint) {
+        return given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                //.body(jsonBody)
+                //.header("Authorization","Bearer "+accessToken)
+                .when()
+                  .get(BASE_URL+endpoint);
+
+    }
+    public static  Response getProductByAccountType( String endpoint) {
+        return given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                //.body(jsonBody)
+                //.header("Authorization","Bearer "+accessToken)
+                .when()
+                .get(BASE_URL+endpoint);
+
+    }
+    public static  Response getSubProductByProductId( String endpoint) {
+        return given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                //.body(jsonBody)
+               // .header("Authorization","Bearer "+accessToken)
+                .when()
+                .get(BASE_URL+endpoint);
+
+    }
+
+
+
+
+
 
     public static  Response getRequestLogIn(String endpoint, String cusLoginAccess) {
         return given()
@@ -68,14 +124,58 @@ public class Routes {
                 .when()
                 .delete(BASE_URL+endpoint);
     }
-    public static  Response postRequest(Object jsonBody, String endpoint,String accessToken) {
+    public static  Response postRequest(String endpoint,Object jsonBody,String userName ) {
+        return given()
+                .pathParam("userName",userName)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body(jsonBody)
+                .then()
+              // .header("Authorization","Bearer "+accessToken)
+                .when()
+                   .post(BASE_URL+endpoint);
+
+    }
+
+    public static  Response getAccountSchemeTypes( String endpoint) {
+        return given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                //.body(jsonBody)
+                // .header("Authorization","Bearer "+accessToken)
+                .when()
+                .get(BASE_URL+endpoint);
+
+    }
+    public static  Response getPeriodByStatus(String endpoint) {
+        return given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                //.body(jsonBody)
+                // .header("Authorization","Bearer "+accessToken)
+                .when()
+                .get(BASE_URL+endpoint);
+
+    }
+    public static  Response getRequestSearchSupplies( Object jsonBody, String endpoint) {
         return given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .body(jsonBody)
-               .header("Authorization","Bearer "+accessToken)
+               // .header("Authorization","Bearer "+accessToken)
                 .when()
-                .post(BASE_URL+endpoint);
+                .get(BASE_URL+endpoint);
+
+    }
+    public static  Response getRequestAccountCalculatedChargeDetails( Object jsonBody, String endpoint) {
+        return given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body(jsonBody)
+                // .header("Authorization","Bearer "+accessToken)
+                .when()
+                .get(BASE_URL+endpoint);
+
     }
 }
 
